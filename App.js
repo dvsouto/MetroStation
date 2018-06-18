@@ -109,7 +109,7 @@ export default class App extends Component {
       line: this.state.user_station.line, // Manter linha de estação do usuário
     };
 
-    // alert(JSON.stringify(nearest_station));
+    // alert(JSON.stringify(user_station));
 
     // Se o usuário estiver em uma estação mas não tiver uma linha setada, definir a primeira Linha
     // da estação como a linha do usuário
