@@ -9,7 +9,7 @@ class MapStation {
   static Stations = Stations;
   static LineStations = LineStations;
 
-  defaultProximityStation = 21250;
+  defaultProximityStation = 150;
 
   /**
    * Calcular a distancia entre dois pontos
@@ -45,6 +45,39 @@ class MapStation {
   }
 
   /**
+   * Calcular menor distancia entre um ponto e um array de pontos
+   * @param Object location_1
+   * @param Object station_location
+   * @param string type_distance
+   * @return float
+   * @author Davi Souto
+   * @since  16/08/2018
+   */
+  MinorDistance(location_1, location_2, type_distance) {
+    if (type_distance === undefined)
+      type_distance = 'm';
+
+    if (Array.isArray(location_2))
+    {
+      minor_distance_point = false;
+      minor_distance = 0;
+
+      for(i_location = 0; i_location < location_2.length; i_location++)
+      {
+        point_distance = this.RadiusDistance(location_1, location_2[i_location], type_distance);
+
+        if (! minor_distance || point_distance < minor_distance)
+        {
+          minor_distance_point = location_2[i_location];
+          minor_distance = point_distance;
+        }
+      }
+
+      return minor_distance;
+    } else return this.RadiusDistance(location_1, location_2, type_distance);
+  }
+
+  /**
    * Retorna a estação mais próxima
    * @param Object user_location
    * @author Davi Souto
@@ -55,11 +88,10 @@ class MapStation {
 
       Object.keys(MapStation.Stations).map((k_station) => {
         ln_station = MapStation.Stations[k_station];
-        ln_station.distance = this.RadiusDistance(user_location, ln_station.location, 'm');
+        ln_station.distance = this.MinorDistance(user_location, ln_station.location, 'm');
+        // ln_station.distance = this.RadiusDistance(user_location, ln_station.location, 'm');
 
-        if (! the_station)
-          the_station = ln_station;
-        else if (ln_station.distance < the_station.distance)
+        if (! the_station || (ln_station.distance < the_station.distance))
           the_station = ln_station;
       });
 

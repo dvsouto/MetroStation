@@ -87,6 +87,12 @@ export default class App extends Component {
     );
   }
 
+  onPressCenterButton() {
+    this.doGetCurrentPosition();
+
+    alert(JSON.stringify(this.state));
+  }
+
   /**
    * Recupera as informacoes de geolocalizacao do usuario
    * @param Object position
@@ -99,7 +105,7 @@ export default class App extends Component {
     };
 
     // Estação mais próxima do usuário
-    nearest_station = this.MapStation.NearestStation(this.state.user_location);
+    nearest_station = this.MapStation.NearestStation(user_location);
 
     // Linha e estação do usuário
     user_station = {
@@ -109,8 +115,6 @@ export default class App extends Component {
       line: this.state.user_station.line, // Manter linha de estação do usuário
     };
 
-    // alert(JSON.stringify(user_station));
-
     // Se o usuário estiver em uma estação mas não tiver uma linha setada, definir a primeira Linha
     // da estação como a linha do usuário
     if (user_station.station && ! user_station.line)
@@ -118,7 +122,7 @@ export default class App extends Component {
 
     // Se o usuário estiver em uma estação e tiver uma linha definida mas essa linha não pertence
     // a estação do usuário, definir a primeira Linha da estação como a linha do usuário
-    if (user_station.station && user_station.line && ! Object.keys(user_station.station.lines).indexOf(user_station.line.id) )
+    if (user_station.station && user_station.line && (user_station.station.lines.indexOf(user_station.line.id) <= -1) )
       user_station.line = this.MapStation.GetLineStationById(user_station.station.lines[0]);
 
     this.setState({
@@ -133,8 +137,8 @@ export default class App extends Component {
    * @param Object error
    */
   errorGeolocation(error) {
-    alert(JSON.stringify(error));
     // @TODO
+    // alert(JSON.stringify(error));
   }
 
   /////////////////////////////////////////////////////////////////////
@@ -149,10 +153,7 @@ export default class App extends Component {
 
     return (
       <View style={ styles.container }>
-        {
-          /* Barra de status do IOS */
-          Platform.OS === 'ios' && <View style={{ height: 20, backgroundColor: '#ff9900'}}></View>
-        }
+        { Platform.OS === 'ios' && <View style={{ height: 20, backgroundColor: '#ff9900'}}></View> }
 
         <View style={ styles.topHeader }>
           <View style={ styles.titleApp }>
@@ -163,18 +164,14 @@ export default class App extends Component {
           {/*<Icon name="ios-settings-outline" size={75} color="white" style={{ right: 30, top: 22, position: 'absolute' }} />*/}
         </View>
 
-        <CenterButton icon='subway' lineStation={ this.state.user_station.line } />
+        <CenterButton icon='subway' lineStation={ this.state.user_station.line } nearestStation={ this.state.nearest_station } onPressCenterButton={ this.onPressCenterButton.bind(this) } />
 
-
-        <ScrollView style={ styles.scrollViewContainer } contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }}>
-          { station_screen }
-
-          {/*
-          <Text>Latitude: { this.state.user_location.latitude }</Text>
+        {/*
+          <Text style={{ paddingTop: 100 }}>Latitude: { this.state.user_location.latitude }</Text>
           <Text>Longitude: { this.state.user_location.longitude }</Text>
-
-          <Text>Estação mais próxima: { this.MapStation.NearestStation(this.state.user_location) }</Text>
-          */}
+        */}
+        <ScrollView overScrollMode="always" showsVerticalScrollIndicator={ false } style={ styles.scrollViewContainer } contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }}>
+          { station_screen }
         </ScrollView>
       </View>
     );

@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     marginVertical: 34,
     width: Dimensions.get('window').width,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   viewIconStation: {
     backgroundColor: '#4a86e8',

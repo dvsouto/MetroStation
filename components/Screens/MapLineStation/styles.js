@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
   ScreenMapLineStationContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 120
+    marginBottom: 120,
+    zIndex: 1
   }
 });
 

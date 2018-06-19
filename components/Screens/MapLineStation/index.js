@@ -15,23 +15,41 @@ import StationItemView from './../../StationItemView';
 import CurrentStationItemView from './../../CurrentStationItemView';
 
 export default class ScreanMapLineStation extends Component {
-
   constructor(props) {
     super(props);
 
     this.MapStation = new MapStation();
+
+    this.state = {
+      stations: null
+    }
   }
 
   componentDidMount() {
-    this.stations = this.MapStation.GetObjectStationsForLine(this.props.user_station.line.id);
+    this.setState({
+      stations: this.MapStation.GetObjectStationsForLine(this.props.user_station.line.id)
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if (prevProps.user_station.line.id != this.props.user_station.line.id)
+    {
+      this.setState({
+        stations: this.MapStation.GetObjectStationsForLine(this.props.user_station.line.id)
+      });
+    }
   }
 
   render() {
+    if (! this.state.stations)
+      return false;
+
     return (
       <View style={ styles.ScreenMapLineStationContainer }>
         <FlatList
-          data={ this.stations }
+          data={ this.state.stations }
           keyExtractor={(item) => item.id}
+          extraData={this.props.user_station}
           renderItem={ ({ item }) => {
             if (this.props.user_station.station.id == item.id)
             {
