@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 8 DIAMANTE
  */
-export default const EightDiamond = {
+export default EightDiamond = {
   'julio_prestes': {
     'id': 'julio_prestes',
     'name': 'Júlio Prestes',

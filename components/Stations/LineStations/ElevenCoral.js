@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 11 CORAL
  */
-export default const ElevenCoral = {
+export default ElevenCoral = {
   'dom_bosco': {
     'id': 'dom_bosco',
     'name': 'Dom Bosco',
@@ -109,5 +109,5 @@ export default const ElevenCoral = {
       'latitude': -23.5154228,
       'longitude': -46.1839589,
     }
-  }, 
+  },
 }

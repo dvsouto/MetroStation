@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 2 VERDE
  */
-export default const TwoGreen = {
+export default TwoGreen = {
   'vila_madalena': {
     'id': 'vila_madalena',
     'name': 'Vila Madalena',

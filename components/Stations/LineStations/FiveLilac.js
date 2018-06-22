@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 5 LILÁS
  */
-export default const FiveLilac = {
+export default FiveLilac = {
   'capao_redondo': {
     'id': 'capao_redondo',
     'name': 'Capão Redondo',
@@ -19,6 +19,7 @@ export default const FiveLilac = {
       'latitude': -23.6492356,
       'longitude': -46.7589419,
     },
+  },
   'vila_das_belezas': {
     'id': 'vila_das_belezas',
     'name': 'Vila das Belezas',
@@ -27,6 +28,7 @@ export default const FiveLilac = {
       'latitude': -23.640299,
       'longitude': -46.7457315,
     },
+  },
   'giovanni_gronchi': {
     'id': 'giovanni_gronchi',
     'name': 'Giovanni Gronchi',
@@ -80,6 +82,7 @@ export default const FiveLilac = {
       'latitude': -23.6334775,
       'longitude': -46.6928539,
     },
+  },
   'brooklin': {
     'id': 'brooklin',
     'name': 'Brooklin',
@@ -97,6 +100,7 @@ export default const FiveLilac = {
       'latitude': -23.6098409,
       'longitude': -46.6684121,
     },
+  },
   'moema': {
     'id': 'moema',
     'name': 'Moema',

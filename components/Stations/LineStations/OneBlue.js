@@ -1,7 +1,7 @@
 /*
  * LINHA 1 AZUL
  */
-export default const OneBlue = {
+export default OneBlue = {
   'tucuruvi': {
     'id': 'tucuruvi',
     'name': 'Tucuruvi',

@@ -13,19 +13,19 @@ import ThirteenJade from './LineStations/ThirteenJade';
 import FifteenSilver from './LineStations/FifteenSilver';
 
 const Stations = {
-  OneBlue,
-  TwoGreen,
-  ThreeRed,
-  FourYellow,
-  FiveLilac,
-  SevenRuby,
-  EightDiamond,
-  NineEmerald,
-  TenTurquoise,
-  ElevenCoral,
-  TwoelveSapphire,
-  ThirteenJade,
-  FifteenSilver
-}
+  ...OneBlue,
+  ...TwoGreen,
+  ...ThreeRed,
+  ...FourYellow,
+  ...FiveLilac,
+  ...SevenRuby,
+  ...EightDiamond,
+  ...NineEmerald,
+  ...TenTurquoise,
+  ...ElevenCoral,
+  ...TwoelveSapphire,
+  ...ThirteenJade,
+  ...FifteenSilver
+};
 
 export default Stations;

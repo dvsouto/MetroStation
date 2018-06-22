@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 15 PRATA
  */
-export default const FifteenSilver = {
+export default FifteenSilver = {
 'oratorio': {
     'id': 'oratorio',
     'name': 'Oratório',
@@ -43,7 +43,7 @@ export default const FifteenSilver = {
     'name': 'Vila Uniao',
     'lines': [ 'fifteen_silver' ],
     'location': {
-      'latitude': -23.603005, 
+      'latitude': -23.603005,
       'longitude': -46.516063,
     }
   },

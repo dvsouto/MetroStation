@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 10 TURQUESA
  */
-export default const TenTurquoise = {
+export default TenTurquoise = {
   'juventus_mooca': {
     'id': 'juventus_mooca',
     'name': 'Juventus\nMooca',

@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 9 ESMERALDA
  */
-export default const NineEmerald = {
+export default NineEmerald = {
   'ceasa': {
     'id': 'ceasa',
     'name': 'Ceasa',

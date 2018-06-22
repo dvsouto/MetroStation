@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 12 Safira
  */
-export default const TwoelveSapphire = {
+export default TwoelveSapphire = {
   'engenheiro_goulart': {
     'id': 'engenheiro_goulart',
     'name': 'Engenheiro Goulart',

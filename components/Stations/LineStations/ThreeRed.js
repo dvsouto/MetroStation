@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 3 VERMELHA
  */
-export default const ThreeRed = {
+export default ThreeRed = {
   'palmeiras_barra_funda': {
     'id': 'palmeiras_barra_funda',
     'name': 'Palmeiras\nBarra Funda',

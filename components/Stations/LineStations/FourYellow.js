@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 4 AMARELA
  */
-export default const FourYellow = {
+export default FourYellow = {
   'higienopolis_mackenzie': {
     'id': 'higienopolis_mackenzie',
     'name': 'Higienópolis\nMackenzie',

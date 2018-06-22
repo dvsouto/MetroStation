@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 13 Jade
  */
-export default const ThirteenJade = {
+export default ThirteenJade = {
   'guarulhos_cecap': {
     'id': 'guarulhos_cecap',
     'name': 'Guarulhos\nCecap',

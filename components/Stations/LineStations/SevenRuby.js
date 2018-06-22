@@ -1,7 +1,7 @@
-/* 
+/*
  * LINHA 7 RUBI
  */
-export default const SevenRuby = {
+export default SevenRuby = {
   'agua_branca': {
     'id': 'agua_branca',
     'name': 'Água Branca',
