@@ -13,9 +13,13 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Vibration
+  Vibration,
+  Alert
 } from 'react-native';
 
+var PushNotification = require('react-native-push-notification');
+
+// Icones
 // import Icon from 'react-native-vector-icons/FontAwesome';
 // import Icon from 'react-native-vector-icons/Ionicons';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -27,26 +31,16 @@ import RoundedButton from './components/RoundedButton';
 // Funçōes de estaçōes
 import MapStation from './components/Stations/MapStation';
 
+// Funçōes de geolocalização
+import MapGeolocation from './components/Geolocation/MapGeolocation';
+
 // Telas
 import ScreenNearestStation from './components/Screens/NearestStation';
 import ScreenMapLineStation from './components/Screens/MapLineStation';
 
 export default class App extends Component {
-  watch_position = null;
-  geolocation_params = Platform.select({
-    ios: {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 1000,
-      distanceFilter: 10
-    },
-    android: {
-      enableHighAccuracy: true,
-      timeout: 5000
-    }
-  })
-
   MapStation = new MapStation();
+  MapGeolocation = new MapGeolocation();
 
   constructor(props) {
     super(props);
@@ -60,35 +54,27 @@ export default class App extends Component {
         station: null,
         line: null
       },
-      nearest_station: null,
+      nearest_station: null
     }
+
+    PushNotification.configure({
+        onNotification: function(notification) {
+            notification.finish(PushNotificationIOS.FetchResult.NoData);
+        },
+        popInitialNotification: true,
+        requestPermissions: true,
+    });
   }
 
-  componentDidMount() {
-    this.doGetCurrentPosition();
+  componentDidMount(){
+    this.MapGeolocation.onGetLocation = this.getGeolocation.bind(this);
+    this.MapGeolocation.onErrorLocation = this.errorGeolocation.bind(this);
 
-    this.watch_position = navigator.geolocation.watchPosition(
-      this.getGeolocation.bind(this),
-      this.errorGeolocation.bind(this),
-      this.geolocation_params
-    );
-  }
-
-  componentWillUnmount() {
-    if (this.watch_position)
-      navigator.geolocation.clearWatch(this.watch_position);
-  }
-
-  doGetCurrentPosition() {
-    navigator.geolocation.getCurrentPosition(
-      this.getGeolocation.bind(this),
-      this.errorGeolocation.bind(this),
-      this.geolocation_params
-    );
+    this.MapGeolocation.Start();
   }
 
   onPressCenterButton() {
-    this.doGetCurrentPosition();
+    this.MapGeolocation.GetCurrentLocation();
 
     alert(JSON.stringify(this.state));
   }
@@ -100,12 +86,18 @@ export default class App extends Component {
   getGeolocation(position) {
     // Localização do usuário
     user_location = {
-      latitude: parseFloat(position.coords.latitude),
-      longitude: parseFloat(position.coords.longitude),
+      latitude: parseFloat(position.latitude),
+      longitude: parseFloat(position.longitude),
     };
 
     // Estação mais próxima do usuário
     nearest_station = this.MapStation.NearestStation(user_location);
+
+    trigger_newUserStation = false;
+
+    // Verificar se mudou de estação
+    if ((nearest_station.distance <= this.MapStation.defaultProximityStation) && (this.state.user_station.station) && (this.state.user_station.station.id != nearest_station.id))
+      trigger_newUserStation = true;
 
     // Linha e estação do usuário
     user_station = {
@@ -125,10 +117,49 @@ export default class App extends Component {
     if (user_station.station && user_station.line && (user_station.station.lines.indexOf(user_station.line.id) <= -1) )
       user_station.line = this.MapStation.GetLineStationById(user_station.station.lines[0]);
 
+    if (trigger_newUserStation)
+      this.newUserStation(user_station);
+
     this.setState({
       user_location,
       nearest_station,
       user_station
+    });
+  }
+
+  /**
+   * Ao mudar de estação
+   * @param object user_station
+   * @param
+   */
+  newUserStation(user_station){
+    push_message = "Você chegou na estação " + user_station.station.name.toUpperCase();
+
+    PushNotification.localNotification({
+        /* Android Only Properties */
+        ticker: push_message, // (optional)
+        autoCancel: true, // (optional) default: true
+        largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
+        smallIcon: "ic_notification", // (optional) default: "ic_notification" with fallback for "ic_launcher"
+        // bigText: "My big text that will be shown when notification is expanded", // (optional) default: "message" prop
+        // subText: "This is a subText", // (optional) default: none
+        color: user_station.line.hex_color, // (optional) default: system default
+        vibrate: true, // (optional) default: true
+        vibration: 2000, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+        // tag: 'some_tag', // (optional) add tag to message
+        // group: "group", // (optional) add group to message
+        // ongoing: false, // (optional) set whether this is an "ongoing" notification
+
+        /* iOS only properties */
+        // alertAction: // (optional) default: view
+        // category: // (optional) default: null
+        // userInfo: // (optional) default: null (object containing additional notification data)
+
+        /* iOS and Android properties */
+        title: "MetroStation", // (optional)
+        message: push_message, // (required)
+        playSound: true, // (optional) default: true
+        soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
     });
   }
 

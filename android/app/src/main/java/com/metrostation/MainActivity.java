@@ -1,7 +1,6 @@
 package com.metrostation;
 
 import com.facebook.react.ReactActivity;
-import com.timhagn.rngloc.RNGLocation;  // <--- import
 
 public class MainActivity extends ReactActivity {
 

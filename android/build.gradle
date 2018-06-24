@@ -12,6 +12,16 @@ buildscript {
     }
 }
 
+ext {
+    compileSdkVersion   = 26
+    targetSdkVersion    = 26
+    buildToolsVersion   = "26.0.1"
+    supportLibVersion   = "23+"
+    googlePlayServicesVersion = "11+"
+    androidMapsUtilsVersion = "0.5"
+}
+
+
 allprojects {
     repositories {
         mavenLocal()
