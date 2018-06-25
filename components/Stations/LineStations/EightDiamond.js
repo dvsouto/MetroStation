@@ -146,15 +146,6 @@ export default EightDiamond = {
       'longitude': -46.9161409,
     }
   },
-  'sagrado_coracao': {
-    'id': 'sagrado_coracao',
-    'name': 'Sagrado Coração',
-    'lines': [ 'eight_diamond' ],
-    'location': {
-      'latitude': -23.5292236,
-      'longitude': -46.9161409,
-    }
-  },
   'engenheiro_cardoso': {
     'id': 'engenheiro_cardoso',
     'name': 'Engenheiro Cardoso',

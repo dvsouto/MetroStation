@@ -16,7 +16,8 @@
 
    render() {
      // Cor default do botão
-     button_bg_color = '#A8796A';
+     button_bg_color = '#FF9900';
+     // button_bg_color = '#A8796A';
 
      // Buscar cor da estação para definir no botão
      if (this.props.lineStation && this.props.lineStation.hex_color) button_bg_color = this.props.lineStation.hex_color;

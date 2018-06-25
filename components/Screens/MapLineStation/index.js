@@ -45,15 +45,16 @@ export default class ScreanMapLineStation extends Component {
       return false;
 
     return (
-      <View style={ styles.ScreenMapLineStationContainer }>
+      <View ref="ScreenMapLineStationContainer" style={ styles.ScreenMapLineStationContainer }>
         <FlatList
           data={ this.state.stations }
           keyExtractor={(item) => item.id}
           extraData={this.props.user_station}
+          ref="FlatListStations"
           renderItem={ ({ item }) => {
             if (this.props.user_station.station.id == item.id)
             {
-              return (<CurrentStationItemView station={ item } lineStation={ this.props.user_station.line } />);
+              return (<CurrentStationItemView ref="CurrentStationItemView" station={ item } lineStation={ this.props.user_station.line } />);
             } else {
               return (<StationItemView station={ item } lineStation={ this.props.user_station.line } />);
             }

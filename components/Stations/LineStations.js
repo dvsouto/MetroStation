@@ -42,7 +42,7 @@ const LineStations = {
     'id': 'eight_diamond',
     'name': 'Linha 8 Diamante',
     'hex_color': '#d1d1d1',
-    'stations': [ 'julio_prestes', 'palmeiras_barra_funda', 'domingos_de_moraes', 'imperatriz_leopoldina', 'presidente_altino', 'osasco', 'comandante_sampaio', 'quitauna', 'general_miguel_costa', 'carapicuiba', 'santa_terezinha', 'antonio_joao', 'barueri', 'jardim_belval', 'jardim_silveira', 'jandira', 'sagrado_coracao', 'sagrado_coracao', 'engenheiro_cardoso', 'itapevi', 'santa_rita', 'amador_bueno' ]
+    'stations': [ 'julio_prestes', 'palmeiras_barra_funda', 'domingos_de_moraes', 'imperatriz_leopoldina', 'presidente_altino', 'osasco', 'comandante_sampaio', 'quitauna', 'general_miguel_costa', 'carapicuiba', 'santa_terezinha', 'antonio_joao', 'barueri', 'jardim_belval', 'jardim_silveira', 'jandira', 'sagrado_coracao', 'engenheiro_cardoso', 'itapevi', 'santa_rita', 'amador_bueno' ]
   },
   'nine_emerald': {
     'id': 'nine_emerald',

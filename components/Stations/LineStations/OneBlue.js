@@ -77,7 +77,7 @@ export default OneBlue = {
   'luz': {
     'id': 'luz',
     'name': 'Luz',
-    'lines': [ 'one_blue', 'three_red', 'seven_ruby', 'eleven_coral' ],
+    'lines': [ 'one_blue', 'four_yellow', 'seven_ruby', 'eleven_coral' ],
     'location': [
       { // Linha 1 Azul
         'latitude': -23.53711242,

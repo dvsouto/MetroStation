@@ -15,7 +15,7 @@ import styles from './styles';
 export default class CurrentStationItemView extends Component {
   render() {
     return (
-      <View style={ [ styles.containerStation, { backgroundColor: this.props.lineStation.hex_color } ] } >
+      <View style={ [ styles.containerStation, { backgroundColor: this.props.lineStation.hex_color } ] } ref="CurrentStationItemView" >
         <Text style={ styles.textInformation }>Você está aqui</Text>
         <Text style={ styles.textStation }>{ this.props.station.name.toUpperCase() }</Text>
       </View>
