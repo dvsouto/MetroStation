@@ -90,7 +90,8 @@ export default ElevenCoral = {
     'location': {
       'latitude': -23.5363135,
       'longitude': -46.2252028,
-    }
+    },
+    'rateProximity': 1
   },
   'mogi_das_cruzes': {
     'id': 'mogi_das_cruzes',

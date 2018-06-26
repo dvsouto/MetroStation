@@ -62,11 +62,14 @@ class UserLocation {
    * @since  24/06/2018
    */
   isNewStation(nearest_station, station){
-    defaultProximityStation = this.MapStation.defaultProximityStation;
+    defaultProximityStation = MapStation.getDefaultProximityStation();
+    rateProximity = nearest_station.rateProximity || 1;
+    calcProximity = rateProximity * defaultProximityStation;
+    console.log(calcProximity);
 
     // Verificar se a estação mais próxima está dentro do limite de proximidade para
     // atualizar o user station para a estação atual
-    if (nearest_station.distance <= defaultProximityStation)
+    if (nearest_station.distance <= calcProximity)
     {
       // Definir a antiga estação e linhas
       this.oldUserStation = station;

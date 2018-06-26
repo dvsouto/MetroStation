@@ -18,7 +18,8 @@ export default OneBlue = {
     'location': {
       'latitude': -23.4870042,
       'longitude': -46.6088369,
-    }
+    },
+    'rateProximity': 0.85
   },
   'jd_sao_paulo': {
     'id': 'jd_sao_paulo',
@@ -27,7 +28,8 @@ export default OneBlue = {
     'location': {
       'latitude': -23.4923435,
       'longitude': -46.6165091,
-    }
+    },
+    'rateProximity': 1.15
   },
   'santana': {
     'id': 'santana',
@@ -36,7 +38,8 @@ export default OneBlue = {
     'location': {
       'latitude': -23.5026194,
       'longitude': -46.6251473,
-    }
+    },
+    'rateProximity': 0.85
   },
   'carandiru': {
     'id': 'carandiru',

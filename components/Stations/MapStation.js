@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 import Stations from './TheStations';
 import LineStations from './LineStations';
 import { MapObject } from './../General';
@@ -9,7 +11,7 @@ class MapStation {
   static Stations = Stations;
   static LineStations = LineStations;
 
-  defaultProximityStation = 150;
+  static _defaultProximityStation = 150;
 
   /**
    * Calcular a distancia entre dois pontos
@@ -150,6 +152,12 @@ class MapStation {
    }
 
 
+   //////////////////////////////////////////////////////////////////
+
+   static getDefaultProximityStation()
+   {
+     return (MapStation._defaultProximityStation * parseFloat(Platform.select({ ios: '1', android: '1.2' })));
+   }
    //////////////////////////////////////////////////////////////////
 
   _deg2rad(deg) {
