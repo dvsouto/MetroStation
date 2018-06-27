@@ -11,13 +11,13 @@ const defaultGetGeolocationParams = Platform.select({
   ios: {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 1000,
+    maximumAge: 0, //1000,
     distanceFilter: 15
   },
   android: {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 1000,
+    maximumAge: 0, //1000,
     distanceFilter: 15
   }
 });
